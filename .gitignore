@@ -1,0 +1,22 @@
+# Fichiers système macOS
+.DS_Store
+._*
+
+# MiniLibX (chacun installe la sienne localement)
+minilibx-linux/
+minilibx_mms_20200219/
+mlx/
+*.dylib
+*.a
+
+# Fichiers de compilation
+*.o
+objs/
+
+# Exécutable
+miniRT
+
+# Fichiers temporaires
+*~
+*.swp
+*.swo
