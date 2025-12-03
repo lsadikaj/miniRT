@@ -6,7 +6,7 @@
 #    By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 22:07:35 by lsadikaj          #+#    #+#              #
-#    Updated: 2025/12/01 22:33:38 by lsadikaj         ###   ########.fr        #
+#    Updated: 2025/12/03 15:28:02 by lsadikaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,10 @@ endif
 
 CFLAGS      += -I$(INCDIR) $(MLX_FLAGS)
 LDFLAGS     = $(MLX_LINK) -lm
-SRCS        = $(SRCDIR)/main.c 
+SRCS        = $(SRCDIR)/main.c \
+				$(SRCDIR)/init.c \
+				$(SRCDIR)/hooks.c \
+				$(SRCDIR)/render.c
 OBJS        = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 
 all: $(MLX_LIB) $(NAME)
