@@ -16,6 +16,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include "../libft/libft.h"
+# include "../libft/ft_printf/ft_printf.h"
+# include "../libft/get_next_line/get_next_line.h"
 
 # ifdef __APPLE__
 #  include "../minilibx_mms_20200219/mlx.h"
@@ -145,5 +148,30 @@ void	setup_hooks(t_data *data);
 void	put_pixel(t_img *img, int x, int y, int color);
 int		create_color(int r, int g, int b);
 void	draw_gradient(t_data *data);
+
+// read_args.c
+char	**read_args(char *filename);
+
+// parser
+int		parse_ambiant(t_data *data, char *line);
+t_color parse_color(char *str);
+int 	is_ambiant(char *line);
+int 	check_color_range(char *str);
+int		check_args(char **args);
+
+//checkers.c
+int 	is_valid_ambiant(char *line);
+int		is_valid_camera(char *line);
+int		is_valid_light(char *line);
+int		is_valid_sphere(char *line);
+int		is_valid_plane(char *line);
+int		is_valid_cylinder(char *line);
+typedef struct s_parser
+{
+	char* indentifier;
+	int (*checker)(char *line);
+} t_parser;
+
+extern t_parser g_checkers[];
 
 #endif
