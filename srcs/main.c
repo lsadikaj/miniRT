@@ -12,6 +12,35 @@
 
 #include "../includes/minirt.h"
 
+int check_objnb(char **args)
+{
+	int i;
+	int A;
+	int C;
+	int L;
+
+	i = 0;
+	A = 0;
+	C = 0;
+	L = 0;
+	while (args[i])
+	{
+		if(args[i][0] == 'A' && args[i][1] == ' ')
+			A++;
+		else if(args[i][0] == 'C' && args[i][1] == ' ')
+			C++;
+		else if(args[i][0] == 'L' && args[i][1] == ' ')
+			L++;
+		i++;
+	}
+	if (A != 1 || C != 1 || L != 1)
+	{
+		ft_printf("Error\nInvalid number of A, C or L objects. A and C must be exactly 1, L at least 1.\n");
+		return (1);
+	}
+	return (0);
+}
+
 int file_check(char *filename)
 {
 	int len = ft_strlen(filename);
@@ -45,9 +74,15 @@ int main(int argc, char **argv)
 		ft_printf("Error\nCould not read file or is empty: %s\n", argv[1]);
 		return (1);
 	}
-	if(check_args(args))
+	if(check_args(args) || check_objnb(args))
 		return (1);
-
+	
+	while (args[i])
+	{
+		printf("ARG[%d]: %s", i, args[i]);
+		i++;
+	}
+	i = 0;
 
 
 	if (!init_mlx(&data))

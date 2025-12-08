@@ -1,8 +1,8 @@
 #include "../../includes/minirt.h"
 
 // a ameliorer avec un switch case peut etre
-//et ou tableau de function pointers
 
+//return 0 if all args are valid, 1 if not
 int check_args(char **args)
 {
     int i = 0;
@@ -27,8 +27,11 @@ int check_args(char **args)
         }
         if (!found)
         {
-            ft_printf("Error\nUnknown identifier in line: %s", args[i]);
-            return (1);
+            if(args[i][0] != '\n' && args[i][0] != '\0')
+            {
+                ft_printf("Error\nUnknown identifier in line: %s", args[i]);
+                return (1);
+            }
         }
         i++;
     }
