@@ -150,14 +150,14 @@ int		create_color(int r, int g, int b);
 void	draw_gradient(t_data *data);
 
 // read_args.c
-char	**read_args(char *filename);
+int		read_args(char *filename);
 
 // parser
 int		parse_ambiant(t_data *data, char *line);
 t_color parse_color(char *str);
 int 	is_ambiant(char *line);
 int 	check_color_range(char *str);
-int		check_args(char **args);
+int		check_args(char *args);
 
 //checkers.c
 int 	is_valid_ambiant(char *line);

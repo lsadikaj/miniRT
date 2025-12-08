@@ -9,7 +9,7 @@
 int is_valid_ambiant(char *line)
 {
     char **tokens;
-
+// ft_split a changer
     tokens = ft_split(line, ' ');
     if (!tokens || tokens[0] == NULL || tokens[1] == NULL || tokens[2] == NULL || tokens[0][0] != 'A' || tokens[0][1] != '\0' || tokens[3] != NULL)
     {
@@ -33,7 +33,7 @@ int is_valid_ambiant(char *line)
 int is_valid_camera(char *line)
 {
     char **tokens;
-
+//ft_split a changer
     tokens = ft_split(line, ' ');
     if (!tokens || tokens[0] == NULL || tokens[1] == NULL || tokens[2] == NULL || tokens[3] == NULL || tokens[0][0] != 'C' || tokens[0][1] != '\0' || tokens[4] != NULL)
     {

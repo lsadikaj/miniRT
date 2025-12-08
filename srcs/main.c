@@ -56,11 +56,11 @@ int file_check(char *filename)
 
 int main(int argc, char **argv)
 {
-	int i;
+	//int i;
     t_data	data;
-	char **args;
+	//char **args;
 
-	i = 0;
+	//i = 0;
 	if (argc != 2)
 	{
 		ft_printf("Usage: %s <scene_file>\n", argv[0]);
@@ -68,21 +68,21 @@ int main(int argc, char **argv)
 	}
 	if (file_check(argv[1]))
 		return (1);
-	args = read_args(argv[1]);
-	if (!args || args[0] == NULL)
+	
+	if (read_args(argv[1]))
 	{
 		ft_printf("Error\nCould not read file or is empty: %s\n", argv[1]);
 		return (1);
 	}
-	if(check_args(args) || check_objnb(args))
-		return (1);
+	/* if(check_args(args) || check_objnb(args))
+		return (1); */
 	
-	while (args[i])
+	/* while (args[i])
 	{
 		printf("ARG[%d]: %s", i, args[i]);
 		i++;
 	}
-	i = 0;
+	i = 0; */
 
 
 	if (!init_mlx(&data))
@@ -94,10 +94,10 @@ int main(int argc, char **argv)
 		
 		setup_hooks(&data);
 		mlx_loop(data.mlx_ptr);
-		while(args[i])
+/* 		while(args[i])
 		{
 			free(args[i]);
 			i++;
-		}
+		} */
 		return (0);
 	}
