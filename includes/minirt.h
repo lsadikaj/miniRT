@@ -172,6 +172,5 @@ typedef struct s_parser
 	int (*checker)(char *line);
 } t_parser;
 
-extern t_parser g_checkers[];
 
 #endif
