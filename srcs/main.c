@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:19:21 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/03 15:16:57 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:01:50 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int check_objnb(char **args)
 	}
 	if (A != 1 || C != 1 || L != 1)
 	{
-		ft_printf("Error\nInvalid number of A, C or L objects. A and C must be exactly 1, L at least 1.\n");
+		printf("Error\nInvalid number of A, C or L objects. A and C must be exactly 1, L at least 1.\n");
 		return (1);
 	}
 	return (0);
@@ -63,7 +63,7 @@ int main(int argc, char **argv)
 	//i = 0;
 	if (argc != 2)
 	{
-		ft_printf("Usage: %s <scene_file>\n", argv[0]);
+		printf("Usage: %s <scene_file>\n", argv[0]);
 		return (1);
 	}
 	if (file_check(argv[1]))
@@ -71,7 +71,7 @@ int main(int argc, char **argv)
 	
 	if (read_args(argv[1]))
 	{
-		ft_printf("Error\nCould not read file or is empty: %s\n", argv[1]);
+		printf("Error\nCould not read file or is empty: %s\n", argv[1]);
 		return (1);
 	}
 	/* if(check_args(args) || check_objnb(args))

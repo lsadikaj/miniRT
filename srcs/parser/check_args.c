@@ -18,7 +18,7 @@ int check_args(char *args)
             {
                 if (checker[j].checker(args) == 1)
                 {
-                    ft_printf("Error\nInvalid argument line: %s", args);
+                    printf("Error\nInvalid argument line: %s", args);
                     return (1);
                 }
                 found = 1;
@@ -30,7 +30,7 @@ int check_args(char *args)
         {
             if(args[0] != '\n' || args[0] != '\0')
             {
-                ft_printf("Error\nUnknown identifier in line: %s", args);
+                printf("Error\nUnknown identifier in line: %s", args);
                 return (1);
             }
         }

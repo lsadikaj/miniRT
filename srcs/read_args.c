@@ -29,9 +29,9 @@ int read_args(char *filename)
         }
       if(check_args(line + i) == 1)
         {
+            printf("Error\nInvalid line in file: %s", line);
             free(line);
             close(fd);
-            ft_printf("Error\nInvalid line in file: %s", line);
             return (1);
         }
         free(line);
