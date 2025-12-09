@@ -79,13 +79,3 @@ int is_valid_cylinder(char *line)
     (void) line;
     return (0);
 }
-
-t_parser g_checkers[] = {
-    {"A", &is_valid_ambiant},
-    {"C", &is_valid_camera},
-    {"L", &is_valid_light},
-    {"sp", &is_valid_sphere},
-    {"pl", &is_valid_plane},
-    {"cy", &is_valid_cylinder},
-    {0, NULL}
-};
