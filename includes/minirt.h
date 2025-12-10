@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:17:48 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/03 15:32:33 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2025/12/10 17:06:02 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,11 +153,16 @@ void	draw_gradient(t_data *data);
 int		read_args(char *filename);
 
 // parser
-int		parse_ambiant(t_data *data, char *line);
-t_color parse_color(char *str);
 int 	is_ambiant(char *line);
 int 	check_color_range(char *str);
 int		check_args(char *args);
+
+// parser_utils.c
+int		skip_whitespaces(char *str, int i);
+int		is_normalized(t_vec3 v);
+int		parse_vector(char *str, int *i, t_vec3 *v);
+t_color parse_color(char *str);
+
 
 //checkers.c
 int 	is_valid_ambiant(char *line);
