@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:17:48 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/10 17:06:02 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2025/12/10 17:10:55 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <math.h>
 # include "../libft/libft.h"
 # include "../libft/ft_printf/ft_printf.h"
 # include "../libft/get_next_line/get_next_line.h"
