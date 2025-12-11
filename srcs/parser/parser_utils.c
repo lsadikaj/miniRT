@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 15:45:31 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/10 17:03:46 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2025/12/11 12:17:24 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	skip_whitespaces(char *str, int i)
 }
 
 // Pythagore to check if a vector is normalized, return 0 for succes
-int	is_normalized(t_vec3 v)
+int	is_not_normalized(t_vec3 v)
 {
 	double	len;
 
