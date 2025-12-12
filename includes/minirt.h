@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:17:48 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/12 13:06:43 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:23:10 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ typedef struct	s_scene
 {
 	t_ambient	ambient;
 	t_camera	camera;
-	t_light		*lights;
+	t_light		light;
 	t_sphere	*spheres;
 	t_plane		*planes;
 	t_cylinder	*cylinders;
@@ -154,10 +154,14 @@ void	draw_gradient(t_data *data);
 int		read_args(char *filename);
 
 // parser
-int		parse_ambient(char *line, t_scene *scene);
 int 	is_ambiant(char *line);
 int 	check_color_range(char *str);
 int		check_args(char *args);
+
+// parse_acl.c
+int		parse_ambient(char *line, t_scene *scene);
+int		parse_camera(char *line, t_scene *scene);
+int		parse_light(char *line, t_scene *scene);
 
 // parser_utils.c
 int		skip_whitespaces(char *str, int i);

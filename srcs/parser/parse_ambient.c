@@ -46,26 +46,3 @@ int parse_ambiant(t_data *data, char *line)
     ft_free_split(tokens);
     return (0);
 } */
-
-// parses ambient light line and fills scene->ambient
-int	parse_ambient(char *line, t_scene *scene)
-{
-	int		i;
-	double	ratio;
-	t_color	color;
-
-	i = 0;
-	while (line[i] && line[i] != ' ' && line[i] != '\t')
-		i++;
-	i = skip_whitespaces(line, i);
-	ratio = ft_atod(&line[i]);
-	while (line[i] && line[i] != ' ' && line[i] != '\t')
-		i++;
-	i = skip_whitespaces(line, i);
-	color = parse_color(&line[i]);
-	if (color.r == -1)
-		return (1);
-	scene->ambient.ratio = ratio;
-	scene->ambient.color = color;
-	return (0);
-}
