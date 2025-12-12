@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 15:45:31 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/11 13:01:59 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:44:58 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	is_not_normalized(t_vec3 v)
 	return (0);
 }
 
-// parses 3D vectors (x, y, z), return 0 for succes
+// parses 3D vectors (x, y, z) and fills t_vec3, return 0 for succes
 int	parse_vector(char *str, int *i, t_vec3 *v)
 {
 	*i = skip_whitespaces(str, *i);
@@ -53,7 +53,7 @@ int	parse_vector(char *str, int *i, t_vec3 *v)
 	return (0);
 }
 
-//parses color from string "R,G,B"
+//parses color from string "R,G,B", fills and return a t_color 
 t_color	parse_color(char *str)
 {
 	t_color	color;
