@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:19:08 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/12 15:29:14 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:52:18 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int	parse_camera(char *line, t_scene *scene)
 		return (1);
 	i = skip_whitespaces(line, i);
 	fov = ft_atod(&line[i]);
-	scene->camera.fov = fov;
 	scene->camera.position = position;
 	scene->camera.direction = direction;
+	scene->camera.fov = fov;
 	return (0);
 }
 
