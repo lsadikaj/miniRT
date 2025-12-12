@@ -47,7 +47,7 @@ int parse_ambiant(t_data *data, char *line)
     return (0);
 } */
 
-// parses ambient light line and fills data->scene.ambient
+// parses ambient light line and fills scene->ambient
 int	parse_ambient(char *line, t_scene *scene)
 {
 	int		i;

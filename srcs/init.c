@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 14:52:33 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/08 16:38:21 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2025/12/12 13:06:29 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,14 @@ void	init_image(t_data *data)
 										&data->img.bits_per_pixel,
 										&data->img.line_length,
 										&data->img.endian);
+}
+
+// init scene data with impossible value and null for pointers
+void	init_scene(t_scene *scene)
+{
+	scene->ambient.ratio = -1;
+	scene->camera.fov = -1;
+	scene->spheres = NULL;
+	scene->planes = NULL;
+	scene->cylinders = NULL;
 }

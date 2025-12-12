@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:17:48 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/11 12:37:33 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2025/12/12 13:06:43 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ typedef struct	s_light
 	t_vec3			position;
 	double			brightness;
 	t_color			color;
-	struct s_light	*next;
 }	t_light;
 
 // Sphere infos
@@ -141,6 +140,7 @@ typedef struct	s_data
 // init.c
 int		init_mlx(t_data *data);
 void	init_image(t_data *data);
+void	init_scene(t_scene *scene);
 
 // hooks.c
 void	setup_hooks(t_data *data);
