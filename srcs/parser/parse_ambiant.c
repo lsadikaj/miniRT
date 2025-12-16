@@ -9,6 +9,8 @@ int check_color_range(char *str)
 
     i = 0;
     components = ft_split(str, ',');
+    //peut etre free split ici | ??
+    //                         V
     if (!components)
         return (1);
     while(components[i])
