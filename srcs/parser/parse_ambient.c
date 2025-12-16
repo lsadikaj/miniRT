@@ -34,17 +34,3 @@ int is_ambiant(char *line)
         return (1);
     return (0);
 }
-
-/* //parses ambiance line and fills data->scene.ambient
-int parse_ambiant(t_data *data, char *line)
-{
-
-    char **tokens;
-    tokens = ft_split(line, ' ');
-    if (!tokens)
-        return (1);
-    data->scene.ambient.ratio = ft_atod(tokens[1]);
-    data->scene.ambient.color = parse_color(tokens[2]);
-    ft_free_split(tokens);
-    return (0);
-} */
