@@ -8,6 +8,7 @@ minilibx_mms_20200219/
 mlx/
 *.dylib
 *.a
+minilibx_mms_20200219.zip
 
 # Fichiers de compilation
 *.o

@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:17:48 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/03 15:32:33 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:23:10 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <math.h>
 # include "../libft/libft.h"
 # include "../libft/ft_printf/ft_printf.h"
 # include "../libft/get_next_line/get_next_line.h"
@@ -85,7 +86,6 @@ typedef struct	s_light
 	t_vec3			position;
 	double			brightness;
 	t_color			color;
-	struct s_light	*next;
 }	t_light;
 
 // Sphere infos
@@ -122,7 +122,7 @@ typedef struct	s_scene
 {
 	t_ambient	ambient;
 	t_camera	camera;
-	t_light		*lights;
+	t_light		light;
 	t_sphere	*spheres;
 	t_plane		*planes;
 	t_cylinder	*cylinders;
@@ -140,6 +140,7 @@ typedef struct	s_data
 // init.c
 int		init_mlx(t_data *data);
 void	init_image(t_data *data);
+void	init_scene(t_scene *scene);
 
 // hooks.c
 void	setup_hooks(t_data *data);
@@ -153,11 +154,21 @@ void	draw_gradient(t_data *data);
 int		read_args(char *filename);
 
 // parser
-int		parse_ambiant(t_data *data, char *line);
-t_color parse_color(char *str);
 int 	is_ambiant(char *line);
 int 	check_color_range(char *str);
 int		check_args(char *args);
+
+// parse_acl.c
+int		parse_ambient(char *line, t_scene *scene);
+int		parse_camera(char *line, t_scene *scene);
+int		parse_light(char *line, t_scene *scene);
+
+// parser_utils.c
+int		skip_whitespaces(char *str, int i);
+int		is_not_normalized(t_vec3 v);
+int		parse_vector(char *str, int *i, t_vec3 *v);
+t_color parse_color(char *str);
+
 
 //checkers.c
 int 	is_valid_ambiant(char *line);

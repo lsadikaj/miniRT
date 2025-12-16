@@ -35,26 +35,7 @@ int is_ambiant(char *line)
     return (0);
 }
 
-//parses color from string "R,G,B"
-t_color parse_color(char *str)
-{
-    t_color color;
-    char **components;
-    
-    components = ft_split(str, ',');
-    if (!components)
-    {
-        color.r = -1;
-        return (color);
-    }
-    color.r = ft_atoi(components[0]);
-    color.g = ft_atoi(components[1]);
-    color.b = ft_atoi(components[2]);
-    ft_free_split(components);
-    return (color);
-}
-
-//parses ambiance line and fills data->scene.ambient
+/* //parses ambiance line and fills data->scene.ambient
 int parse_ambiant(t_data *data, char *line)
 {
 
@@ -66,4 +47,4 @@ int parse_ambiant(t_data *data, char *line)
     data->scene.ambient.color = parse_color(tokens[2]);
     ft_free_split(tokens);
     return (0);
-}
+} */
