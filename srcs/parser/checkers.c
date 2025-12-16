@@ -62,9 +62,32 @@ int is_valid_camera(char *line)
 //L -40.0,50.0,0.0 0.6 10,0,255
 // check coordinates, ratio and color
 int is_valid_light(char *line)
-{
+{    
+    char **tokens;
 
-    (void) line;
+    tokens = ft_split(line, ' ');
+    if (!tokens || tokens[0] == NULL || tokens[1] == NULL || tokens[2] == NULL || tokens[3] == NULL || tokens[0][0] != 'L' || tokens[0][1] != '\0' || tokens[4] != NULL)
+    {
+        ft_free_split(tokens);
+        return (1);
+    }
+    if ( ft_isdigit_str(tokens[1]) || ft_isdigit_str(tokens[2]) || ft_isdigit_str(tokens[3])) //token 1 doit juste etre des chiffres mais peut normalement etre infini ???
+    {
+        ft_free_split(tokens);
+        return (1);
+    }
+    if (ft_atod(tokens[2]) < 0.0 || ft_atod(tokens[2]) > 1.0)
+    {
+        ft_free_split(tokens);
+        return(1);
+    }
+    if(check_color_range(tokens[3]))
+    {
+        ft_free_split(tokens);
+        return(1);
+    }
+
+    ft_free_split(tokens);
     return (0);
 }
 int is_valid_sphere(char *line)
