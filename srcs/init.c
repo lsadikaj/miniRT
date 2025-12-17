@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 14:52:33 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/12 13:06:29 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2025/12/17 17:52:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	init_image(t_data *data)
 		write(2, "Error\nFailed to create image\n", 29);
 		exit(1);
 	}
-	data->img.addr = mlx_get_data_addr(data->img.img_ptr, 
-										&data->img.bits_per_pixel,
-										&data->img.line_length,
-										&data->img.endian);
+	data->img.addr = mlx_get_data_addr(data->img.img_ptr,
+			&data->img.bits_per_pixel,
+			&data->img.line_length,
+			&data->img.endian);
 }
 
 // init scene data with impossible value and null for pointers

@@ -44,7 +44,10 @@ SRCS        = $(SRCDIR)/main.c \
 				$(SRCDIR)/read_args.c \
 				$(SRCDIR)/parser/checkers.c \
 				$(SRCDIR)/parser/check_args.c \
-				$(SRCDIR)/parser/parse_ambiant.c
+				$(SRCDIR)/parser/parse_ambient.c \
+				$(SRCDIR)/parser/parse_acl.c \
+				$(SRCDIR)/parser/parser_utils.c
+
 OBJS        = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 
 all: $(LIBFT_LIB) $(MLX_LIB) $(NAME)

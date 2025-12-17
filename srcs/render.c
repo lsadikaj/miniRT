@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:06:53 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/03 15:28:32 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2025/12/17 18:01:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
-	
+
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
-		dst = img->addr + (y * img->line_length 
-			+ x * (img->bits_per_pixel / 8));
+		dst = img->addr + (y * img->line_length
+				+ x * (img->bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
 	}
 }

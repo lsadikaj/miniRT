@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 15:45:31 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/12 15:44:58 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2025/12/17 17:42:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	parse_vector(char *str, int *i, t_vec3 *v)
 t_color	parse_color(char *str)
 {
 	t_color	color;
-    char	**components;
+	char	**components;
 
 	components = ft_split(str, ',');
 	if (!components)
