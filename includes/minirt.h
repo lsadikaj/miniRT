@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:17:48 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/12 15:23:10 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2026/01/05 16:21:54 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,10 @@ int		is_not_normalized(t_vec3 v);
 int		parse_vector(char *str, int *i, t_vec3 *v);
 t_color parse_color(char *str);
 
+// parse objects
+int		parse_sphere(char *line, t_scene *scene);
+int		parse_plane(char *line, t_scene *scene);
+int		parse_cylinder(char *line, t_scene *scene);
 
 //checkers.c
 int 	is_valid_ambiant(char *line);
