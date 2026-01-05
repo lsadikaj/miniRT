@@ -6,7 +6,7 @@
 #    By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 22:07:35 by lsadikaj          #+#    #+#              #
-#    Updated: 2026/01/05 16:22:11 by lsadikaj         ###   ########.fr        #
+#    Updated: 2026/01/05 16:25:28 by lsadikaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,10 +44,7 @@ SRCS        = $(SRCDIR)/main.c \
 				$(SRCDIR)/read_args.c \
 				$(SRCDIR)/parser/checkers.c \
 				$(SRCDIR)/parser/check_args.c \
-				$(SRCDIR)/parser/parse_ambiant.c \
-				$(SRCDIR)/parser/parse_sphere.c \
-				$(SRCDIR)/parser/parse_plane.c \
-				$(SRCDIR)/parser/parse_cylinder.c
+				$(SRCDIR)/parser/parse_ambiant.c
 OBJS        = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 
 all: $(LIBFT_LIB) $(MLX_LIB) $(NAME)
