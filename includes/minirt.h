@@ -187,5 +187,21 @@ typedef struct s_parser
 	int (*checker)(char *line);
 } t_parser;
 
+//calculs utils
 
+double find_big_t(double a, double b, double discriminant);
+double find_small_t(double a, double b, double discriminant);
+double find_discriminant(double a, double b, double c);
+t_vec3 vec_direction(t_vec3 from, t_vec3 to);
+double vec_dot(t_vec3 v1, t_vec3 v2);
+t_vec3 find_p(t_ray ray, double t);
+t_vec3 vec_divide(t_vec3 vec, double divider);
+t_vec3 vec_multi(t_vec3 vec, double multiplier);
+t_vec3 vec_sub(t_vec3 start, t_vec3 end);
+t_vec3 vec_add(t_vec3 start, t_vec3 end);
+
+
+
+int	check_color_range(char *str);
+int	is_ambiant(char *line);
 #endif
