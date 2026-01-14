@@ -12,7 +12,7 @@
 
 NAME	= miniRT
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror -g3 -O0
 SRCDIR	= srcs
 INCDIR	= includes
 OBJDIR	= objs
@@ -44,9 +44,17 @@ SRCS        = $(SRCDIR)/main.c \
 				$(SRCDIR)/read_args.c \
 				$(SRCDIR)/utils.c \
 				$(SRCDIR)/vec_utils.c \
+				$(SRCDIR)/generate_ray.c \
 				$(SRCDIR)/parser/checkers.c \
 				$(SRCDIR)/parser/check_args.c \
-				$(SRCDIR)/parser/parse_ambient.c 
+				$(SRCDIR)/parser/parse_ambient.c \
+				$(SRCDIR)/parser/parse_sphere.c \
+				$(SRCDIR)/parser/parse_plan.c \
+				$(SRCDIR)/parser/parse_cylinder.c \
+				$(SRCDIR)/parser/parse_all.c \
+				$(SRCDIR)/parser/parser_utils.c \
+				$(SRCDIR)/parser/parse_acl.c
+
 
 OBJS        = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 
@@ -57,6 +65,7 @@ $(LIBFT_LIB):
 
 $(MLX_LIB):
 	make -C $(MLX_DIR)
+	cp minilibx_mms_20200219/libmlx.dylib .
 
 $(NAME): $(OBJS)
 	$(CC) $(OBJS) $(LDFLAGS) -o $@

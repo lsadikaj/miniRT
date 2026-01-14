@@ -1,21 +1,21 @@
 #include "../../includes/minirt.h"
 
 // a ameliorer avec un switch case peut etre
-void	init_checkers(t_parser *checkers)
+void	init_checkers(t_checker *checkers)
 {
-	checkers[0] = (t_parser){"A", &is_valid_ambiant};
-	checkers[1] = (t_parser){"C", &is_valid_camera};
-	checkers[2] = (t_parser){"L", &is_valid_light};
-	checkers[3] = (t_parser){"sp", &is_valid_sphere};
-	checkers[4] = (t_parser){"pl", &is_valid_plane};
-	checkers[5] = (t_parser){"cy", &is_valid_cylinder};
-	checkers[6] = (t_parser){0, NULL};
+	checkers[0] = (t_checker){"A", &is_valid_ambiant};
+	checkers[1] = (t_checker){"C", &is_valid_camera};
+	checkers[2] = (t_checker){"L", &is_valid_light};
+	checkers[3] = (t_checker){"sp", &is_valid_sphere};
+	checkers[4] = (t_checker){"pl", &is_valid_plane};
+	checkers[5] = (t_checker){"cy", &is_valid_cylinder};
+	checkers[6] = (t_checker){0, NULL};
 }
 
 //return 0 if all args are valid, 1 if not
 int	check_args(char *args)
 {
-	t_parser	checkers[7];
+	t_checker	checkers[7];
 	int			j;
 	int			found;
 

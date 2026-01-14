@@ -28,19 +28,26 @@ static t_plane *create_plane(t_vec3 point, t_vec3 direction, t_color color)
 }
 
 // add node in back of link list t_planes
-static void	add_plane_to_list(t_scene *scene, t_plane *new_plane)
+static void add_plane_to_list(t_scene *scene, t_plane *new_plane)
 {
-	t_plane	*current;
+    t_plane *current;
 
-	if (!scene->planes)
-	{
-		scene->planes = new_plane;
-		return ;
-	}
-	current = scene->planes;
-	while (current->next)
-		current = current->next;
-	current->next = new_plane;
+    // Sécurité 1 : Vérifier les inputs
+    if (!scene || !new_plane)
+        return ;
+
+    // Sécurité 2 : Toujours s'assurer que le nouveau dernier maillon pointe vers rien
+    new_plane->next = NULL; 
+
+    if (!scene->planes)
+    {
+        scene->planes = new_plane;
+        return ;
+    }
+    current = scene->planes;
+    while (current->next)
+        current = current->next;
+    current->next = new_plane;
 }
 
 // extract plane data and fill scenes->planes

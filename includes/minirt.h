@@ -29,8 +29,8 @@
 #  define KEY_ESC 65307
 # endif
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1920
+# define HEIGHT 1080
 
 // Rendering infos
 typedef struct	s_img
@@ -118,6 +118,20 @@ typedef struct s_cylinder
 }	t_cylinder;
 
 // Complet scene infos
+
+
+typedef struct s_screen
+{
+	double screen_width;
+	double screen_height;
+	double up;
+	double right;
+	t_vec3    ul_corner;
+	t_vec3    up_vector;
+    t_vec3    right_vector;
+    t_vec3    forward_vector;
+} t_screen;
+
 typedef struct	s_scene
 {
 	t_ambient	ambient;
@@ -126,6 +140,7 @@ typedef struct	s_scene
 	t_sphere	*spheres;
 	t_plane		*planes;
 	t_cylinder	*cylinders;
+	t_screen	screen;
 }	t_scene;
 
 // Global infos
@@ -136,6 +151,7 @@ typedef struct	s_data
 	t_img	img;
 	t_scene	scene;
 }	t_data;
+
 
 // init.c
 int		init_mlx(t_data *data);
@@ -162,6 +178,7 @@ int		check_args(char *args);
 int		parse_ambient(char *line, t_scene *scene);
 int		parse_camera(char *line, t_scene *scene);
 int		parse_light(char *line, t_scene *scene);
+void	init_screen(t_scene scene, t_screen *screen);
 
 // parser_utils.c
 int		skip_whitespaces(char *str, int i);
@@ -187,10 +204,26 @@ int		is_valid_light(char *line);
 int		is_valid_sphere(char *line);
 int		is_valid_plane(char *line);
 int		is_valid_cylinder(char *line);
-typedef struct s_parser
+
+void render(t_scene scene, t_screen screen, t_data *data);
+int	parse_all(char *filename, t_data *data);
+int generate_ray(t_scene scene, t_ray ray);
+void    my_mlx_pixel_put(t_img *img, int x, int y, int color);
+
+
+
+
+
+typedef struct s_checker
 {
 	char* indentifier;
 	int (*checker)(char *line);
+} t_checker;
+
+typedef struct s_parser
+{
+	char* indentifier;
+	int (*parser)(char *line, t_scene *scene);
 } t_parser;
 
 //calculs utils
