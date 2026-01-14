@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:17:48 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/05 16:27:25 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2026/01/14 14:38:41 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,9 +165,15 @@ int		parse_light(char *line, t_scene *scene);
 
 // parser_utils.c
 int		skip_whitespaces(char *str, int i);
-int		is_not_normalized(t_vec3 v);
 int		parse_vector(char *str, int *i, t_vec3 *v);
 t_color parse_color(char *str);
+
+// vec_utils.c
+t_vec3	vec_cross(t_vec3 a, t_vec3 b);
+double	vec_length(t_vec3 v);
+t_vec3	vec_normalize(t_vec3 v);
+int		is_normalized(t_vec3 v);
+
 
 // parse objects
 int		parse_sphere(char *line, t_scene *scene);

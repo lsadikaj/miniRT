@@ -6,7 +6,7 @@
 #    By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 22:07:35 by lsadikaj          #+#    #+#              #
-#    Updated: 2026/01/05 16:25:28 by lsadikaj         ###   ########.fr        #
+#    Updated: 2026/01/14 14:37:30 by lsadikaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS        = $(SRCDIR)/main.c \
 				$(SRCDIR)/render.c \
 				$(SRCDIR)/read_args.c \
 				$(SRCDIR)/utils.c \
+				$(SRCDIR)/vec_utils.c \
 				$(SRCDIR)/parser/checkers.c \
 				$(SRCDIR)/parser/check_args.c \
 				$(SRCDIR)/parser/parse_ambient.c 

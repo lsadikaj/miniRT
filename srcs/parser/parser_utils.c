@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 15:45:31 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/17 17:42:46 by marvin           ###   ########.fr       */
+/*   Updated: 2026/01/14 14:37:03 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,6 @@ int	skip_whitespaces(char *str, int i)
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
 	return (i);
-}
-
-// Pythagore to check if a vector is normalized, return 0 for succes
-int	is_not_normalized(t_vec3 v)
-{
-	double	len;
-
-	len = sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
-	if (len < 0.99 || len > 1.01)
-		return (1);
-	return (0);
 }
 
 // parses 3D vectors (x, y, z) and fills t_vec3, return 0 for succes
