@@ -63,7 +63,6 @@ void render(t_scene scene, t_screen screen, t_data *data)
     // Calcul de la taille d'un pixel sur ton écran virtuel
     u_scale = screen.screen_width / (double)WIDTH;
     v_scale = screen.screen_height / (double)HEIGHT;
-
     y = 0;
     while (y < HEIGHT)
     {
@@ -74,26 +73,19 @@ void render(t_scene scene, t_screen screen, t_data *data)
             // On part du coin haut-gauche
             // On se décale à droite (x * Right * u_scale)
             // On se décale en bas (y * Up * v_scale) -> Attention au signe selon ton Up vector !
-            
             t_vec3 pixel_pos = screen.ul_corner;
-            
             // Décalage horizontal
             pixel_pos = vec_add(pixel_pos, vec_multi(screen.right_vector, x * u_scale));
-            
             // Décalage vertical (on descend, donc on soustrait le vecteur UP)
             pixel_pos = vec_sub(pixel_pos, vec_multi(screen.up_vector, y * v_scale));
-
             // 2. Définir le rayon
             ray.origin = scene.camera.position;
             ray.direction = vec_direction(scene.camera.position, pixel_pos); // Normalisé ici
-
             // 3. Lancer le rayon dans la scène (Intersection)
             // C'est la prochaine grosse fonction à écrire !
             color = generate_ray(scene, ray);
-
             // 4. Mettre le pixel à l'écran (my_mlx_pixel_put)
             put_pixel(&data->img, x, y, color);
-            
             x++;
         }
         y++;

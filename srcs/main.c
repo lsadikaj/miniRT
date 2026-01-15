@@ -29,11 +29,8 @@ int	file_check(char *filename)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int check_usage(int argc, char **argv)
 {
-	t_data	data;
-
-	ft_bzero(&data, sizeof(t_data));
 	if (argc != 2)
 	{
 		printf("Usage: %s <scene_file>\n", argv[0]);
@@ -46,19 +43,22 @@ int	main(int argc, char **argv)
 		printf("Error\nCould not read file or is empty: %s\n", argv[1]);
 		return (1);
 	}
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_data	data;
+	
+	if(check_usage(argc, argv))
+		return (1);
+	ft_bzero(&data, sizeof(t_data));
 	parse_all(argv[1], &data);
 	init_screen(data.scene, &data.scene.screen);
-
 	if (!init_mlx(&data))
 		return (1);
 	init_image(&data);
-
-
-
-
 	render(data.scene, data.scene.screen, &data);
-
-//	draw_gradient(&data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
 		data.img.img_ptr, 0, 0);
 	setup_hooks(&data);

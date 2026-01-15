@@ -84,6 +84,7 @@ typedef struct	s_camera
 typedef struct	s_light
 {
 	t_vec3			position;
+	t_vec3			light_dir;
 	double			brightness;
 	t_color			color;
 }	t_light;
@@ -94,6 +95,9 @@ typedef struct	s_sphere
 	t_vec3			center;
 	double			radius;
 	t_color			color;
+	double 			closest_t;
+	t_vec3			p;
+	t_vec3			normal;
 	struct s_sphere	*next;
 }	t_sphere;
 

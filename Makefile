@@ -45,6 +45,7 @@ SRCS        = $(SRCDIR)/main.c \
 				$(SRCDIR)/utils.c \
 				$(SRCDIR)/vec_utils.c \
 				$(SRCDIR)/generate_ray.c \
+				$(SRCDIR)/find_sphere.c \
 				$(SRCDIR)/parser/checkers.c \
 				$(SRCDIR)/parser/check_args.c \
 				$(SRCDIR)/parser/parse_ambient.c \

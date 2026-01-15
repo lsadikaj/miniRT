@@ -1,20 +1,5 @@
 #include "../includes/minirt.h"
 
-void    my_mlx_pixel_put(t_img *img, int x, int y, int color)
-{
-    char    *dst;
-
-    // Calcul de l'offset (décalage) en mémoire :
-    // (y * line_length) -> On descend de 'y' lignes
-    // (x * (bpp / 8))   -> On se décale de 'x' pixels vers la droite
-    // Note : on divise bpp par 8 pour passer de bits à octets (32 bits = 4 octets)
-
-    dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-    
-    // On écrit la couleur à cet endroit
-    *(unsigned int*)dst = color;
-}
-
 
 t_vec3 vec_add(t_vec3 start, t_vec3 end)
 {
@@ -59,17 +44,6 @@ t_vec3 vec_divide(t_vec3 vec, double divider)
    
     return (result);
 }
-//retourne le point d'intersection le long du rayon a la distance t
-t_vec3 find_p(t_ray ray, double t)
-{
-    t_vec3    result;
-    t_vec3    scaled_direction;
-
-    scaled_direction = vec_multi(ray.direction, t);
-    result = vec_add(ray.origin, scaled_direction);
-   
-    return (result);
-}
 
 double vec_dot(t_vec3 v1, t_vec3 v2)
 {
@@ -89,58 +63,6 @@ t_vec3 vec_direction(t_vec3 from, t_vec3 to)
     return (result);
 }
 
-//retourne la valeur du discriminant
-double find_discriminant(double a, double b, double c)
-{
-    double    discriminant;
-
-    discriminant = b * b - 4 * a * c;
-    return (discriminant);
-}
-
-//retourne la valeur de t la plus petite positive
-double find_small_t(double a, double b, double discriminant)
-{
-    double    t1;
-    double    t2;
-    double    t;
-
-    t1 = (-b + sqrt(discriminant)) / (2 * a);
-    t2 = (-b - sqrt(discriminant)) / (2 * a);
-    if (t1 < 0 && t2 < 0)
-        t = -1;
-    else if (t1 < 0)
-        t = t2;
-    else if (t2 < 0)
-        t = t1;
-    else if (t1 < t2)
-        t = t1;
-    else
-        t = t2;
-    return (t);
-}
-
-//retourne la valeur de t la plus grande positive
-double find_big_t(double a, double b, double discriminant)
-{
-    double    t1;
-    double    t2;
-    double    t;
-
-    t1 = (-b + sqrt(discriminant)) / (2 * a);
-    t2 = (-b - sqrt(discriminant)) / (2 * a);
-    if (t1 < 0 && t2 < 0)
-        t = -1;
-    else if (t1 < 0)
-        t = t2;
-    else if (t2 < 0)
-        t = t1;
-    else if (t1 > t2)
-        t = t1;
-    else
-        t = t2;
-    return (t);
-}
 
 //initialise l'écran virtuel en fonction de la caméra
 //remplit la structure t_screen

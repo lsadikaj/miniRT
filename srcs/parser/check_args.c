@@ -11,6 +11,25 @@ void	init_checkers(t_checker *checkers)
 	checkers[5] = (t_checker){"cy", &is_valid_cylinder};
 	checkers[6] = (t_checker){0, NULL};
 }
+int not_found(char *args)
+{
+	if (args[0] != '\n' || args[0] != '\0')
+	{
+		printf("Error\nUnknown identifier in line: %s", args);
+		return (1);
+	}
+	return (0);
+}
+
+int exec_checker(t_checker *checkers, int j, char *args)
+{
+	if (checkers[j].checker(args) == 1)
+	{
+		printf("Error\nInvalid argument line: %s", args);
+		return (1);
+	}
+	return (0);
+}
 
 //return 0 if all args are valid, 1 if not
 int	check_args(char *args)
@@ -27,11 +46,8 @@ int	check_args(char *args)
 		if (ft_strncmp(args, checkers[j].indentifier,
 				ft_strlen(checkers[j].indentifier)) == 0)
 		{
-			if (checkers[j].checker(args) == 1)
-			{
-				printf("Error\nInvalid argument line: %s", args);
+			if(exec_checker(checkers, j, args) == 1)
 				return (1);
-			}
 			found = 1;
 			break ;
 		}
@@ -39,11 +55,8 @@ int	check_args(char *args)
 	}
 	if (!found)
 	{
-		if (args[0] != '\n' || args[0] != '\0')
-		{
-			printf("Error\nUnknown identifier in line: %s", args);
+		if(not_found(args) == 1)
 			return (1);
-		}
 	}
 	return (0);
 }
