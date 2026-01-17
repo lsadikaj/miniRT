@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   generate_ray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:06:53 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/17 18:01:53 by marvin           ###   ########.fr       */
+/*   Updated: 2026/01/17 16:54:10 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,50 @@ int ray_sphere(t_ray ray, t_scene scene)
     // 2. On a rien touché, on retourne la couleur de fond bleue
     return (0x000000FF); 
 }
-// est utilisé uniquement pour les sphères pour l'instant mais devra etre changé plus tard
+
+static int	test_spheres(t_scene scene, t_ray ray, double *distance)
+{
+	int	color;
+
+	*distance = INFINITY;
+	color = 0x000000FF;
+	if (scene.spheres)
+	{
+		scene.spheres->closest_t = INFINITY;
+		color = ray_sphere(ray, scene);
+		*distance = scene.spheres->closest_t;
+	}
+	return (color);
+}
+
+static int	test_cylinders(t_scene scene, t_ray ray, double *distance)
+{
+	int	color;
+
+	*distance = INFINITY;
+	color = 0x000000FF;
+	if (scene.cylinders)
+	{
+		scene.cylinders->closest_t = INFINITY;
+		color = ray_cylinder(ray, scene);
+		*distance = scene.cylinders->closest_t;
+	}
+	return (color);
+}
+
+// est utilisé uniquement pour les sphères et les cylindre pour l'instant mais devra etre changé plus tard
 int generate_ray(t_scene scene, t_ray ray)
 {
-    if(scene.spheres)
-        return (ray_sphere(ray, scene));
-    else if(scene.planes)
-        ; // À implémenter plus tard
-    else if(scene.cylinders)
-        ; // À implémenter plus tard
-    return (0x000000FF); // Couleur de fond bleue
-  
+	int		sphere_color;
+	int		cylinder_color;
+	double	sphere_t;
+	double	cylinder_t;
+
+	sphere_color = test_spheres(scene, ray, &sphere_t);
+	cylinder_color = test_cylinders(scene, ray, &cylinder_t);
+	if (sphere_t < cylinder_t && sphere_t != INFINITY)
+		return (sphere_color);
+	if (cylinder_t != INFINITY)
+		return (cylinder_color);
+	return (0x000000FF);
 }

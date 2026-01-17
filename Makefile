@@ -6,7 +6,7 @@
 #    By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 22:07:35 by lsadikaj          #+#    #+#              #
-#    Updated: 2026/01/14 14:37:30 by lsadikaj         ###   ########.fr        #
+#    Updated: 2026/01/17 16:56:33 by lsadikaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,8 @@ SRCS        = $(SRCDIR)/main.c \
 				$(SRCDIR)/vec_utils.c \
 				$(SRCDIR)/generate_ray.c \
 				$(SRCDIR)/find_sphere.c \
+				$(SRCDIR)/ray_cylinder.c \
+				$(SRCDIR)/intersect_cylinder.c \
 				$(SRCDIR)/parser/checkers.c \
 				$(SRCDIR)/parser/check_args.c \
 				$(SRCDIR)/parser/parse_ambient.c \

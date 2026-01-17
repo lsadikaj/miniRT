@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:17:48 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/14 14:38:41 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2026/01/17 17:43:31 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@
 #  define KEY_ESC 65307
 # endif
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 900
+# define HEIGHT 700
+
 
 // Rendering infos
 typedef struct	s_img
@@ -118,10 +119,11 @@ typedef struct s_cylinder
 	double				radius;
 	double				height;
 	t_color				color;
+	double				closest_t;
+	t_vec3				p;
+	t_vec3				normal;
 	struct s_cylinder	*next;
 }	t_cylinder;
-
-// Complet scene infos
 
 
 typedef struct s_screen
@@ -136,6 +138,7 @@ typedef struct s_screen
     t_vec3    forward_vector;
 } t_screen;
 
+// Complet scene infos
 typedef struct	s_scene
 {
 	t_ambient	ambient;
@@ -209,12 +212,13 @@ int		is_valid_sphere(char *line);
 int		is_valid_plane(char *line);
 int		is_valid_cylinder(char *line);
 
-void render(t_scene scene, t_screen screen, t_data *data);
-int	parse_all(char *filename, t_data *data);
-int generate_ray(t_scene scene, t_ray ray);
+void 	render(t_scene scene, t_screen screen, t_data *data);
+int		parse_all(char *filename, t_data *data);
+int 	generate_ray(t_scene scene, t_ray ray);
 void    my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
-
+int		ray_cylinder(t_ray ray, t_scene scene);
+double	intersect_cylinder(t_ray ray, t_cylinder *cylinder);
 
 
 
