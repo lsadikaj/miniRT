@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   generate_ray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:06:53 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/17 18:01:53 by marvin           ###   ########.fr       */
+/*   Updated: 2026/01/17 16:54:10 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,22 @@ int     render_plane(t_scene scene, t_ray ray, t_hit hit)
     // Appel à ta fonction de lumière générique
     return (plane_light(scene, p, n, pl->color));
 }
+
+static int	test_cylinders(t_scene scene, t_ray ray, double *distance)
+{
+	int	color;
+
+	*distance = INFINITY;
+	color = 0x000000FF;
+	if (scene.cylinders)
+	{
+		scene.cylinders->closest_t = INFINITY;
+		color = ray_cylinder(ray, scene);
+		*distance = scene.cylinders->closest_t;
+	}
+	return (color);
+}
+
 //lance une serie de fonction pour initialiser le plus petit t
 //de chaque ray dans hit->t pour ensuite render hit->type
 int generate_ray(t_scene scene, t_ray ray)
