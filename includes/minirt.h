@@ -32,6 +32,18 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
+//hit point info
+typedef struct s_hit
+{
+    double      t;
+    void        *obj;
+    int         type;
+}               t_hit;
+
+#define T_SPHERE 1
+#define T_PLANE 2
+#define T_CYLINDER 3
+
 // Rendering infos
 typedef struct	s_img
 {
@@ -100,6 +112,7 @@ typedef struct	s_sphere
 	t_vec3			normal;
 	struct s_sphere	*next;
 }	t_sphere;
+
 
 // Plane infos
 typedef struct	s_plane

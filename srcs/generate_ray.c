@@ -11,7 +11,45 @@
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
+//calcul la couleur d'un pixel en int,
+//en prenant en compte de l'intensité de la lumière
+int plane_light(t_scene scene, t_vec3 hit_point, t_vec3 normal, t_color obj_color)
+{
+    t_vec3 light_dir;
+    double angle;
+    double intensity;
 
+    light_dir = vec_sub(scene.light.position, hit_point);
+    light_dir = vec_normalize(light_dir);
+    angle = vec_dot(normal, light_dir);
+    if(angle < 0)
+        angle = 0;
+    intensity = scene.light.brightness * angle;
+
+    if(intensity > 1.0)
+        intensity = 1.0;
+    return(create_color(obj_color.r * intensity, obj_color.g * intensity, obj_color.b * intensity));
+}
+
+// t = (plane.point - ray.origin) . plane.normal / (ray.direction . plane.normal)
+double intersect_plane(t_ray ray, t_plane planes)
+{
+    double denominator;
+    double t;
+    t_vec3 plane_normal;
+
+    plane_normal = vec_normalize(planes.direction);
+    denominator = vec_dot(ray.direction, plane_normal);
+    if(denominator > -0.0001 && denominator < 0.0001) // fabs ???
+        return (-1); // Le rayon est parallèle au plan, on retourne une couleur par défaut
+    t = vec_dot(vec_sub(planes.point, ray.origin), plane_normal) / denominator;
+    if(t < 0)
+        return (-1); // Le plan est derrière le rayon, on retourne une couleur par défaut
+
+    return (t);
+}
+
+//calcul le discriminant et si il y a une intersection calcule et retourne le petit t de la sphere
 double intersect_sphere(t_ray ray, t_sphere sphere)
 {
     double  a;
@@ -38,60 +76,100 @@ double intersect_sphere(t_ray ray, t_sphere sphere)
     // 4. On retourne la plus petite distance positive
     return (find_small_t(a, b, discriminant));
 }
-int ray_sphere2(t_sphere *closest_sphere, t_ray ray, t_scene scene)
-{
-    int color;
-    double light_intensity;
-     // Calcul de la couleur en fonction de la lumière
-        closest_sphere->p = find_p(ray, scene.spheres->closest_t);
-        closest_sphere->normal = vec_normalize(vec_sub(closest_sphere->p, closest_sphere->center));        
-        scene.light.light_dir = vec_normalize(vec_sub(scene.light.position, closest_sphere->p));
-        light_intensity = vec_dot(scene.spheres->normal, scene.light.light_dir) * scene.light.brightness;
-        if (light_intensity < 0)
-            light_intensity = 0;
-        color = create_color(
-            (int)(closest_sphere->color.r * light_intensity),
-            (int)(closest_sphere->color.g * light_intensity),
-            (int)(closest_sphere->color.b * light_intensity)
-        );
-        return (color);
-}
 
-int ray_sphere(t_ray ray, t_scene scene)
+//cherche le petit t de sphere et le stock dans hit->t uniquement si il est plus petit
+//que le hit->t precedement calculé pour les autres formes
+ void    check_spheres(t_scene *scene, t_ray ray, t_hit *hit)
 {
-    double      current_t;
-    t_sphere    *current_sphere;
-    t_sphere    *closest_sphere;
+    t_sphere    *tmp;
+    double      t;
 
-    scene.spheres->closest_t = INFINITY; // On initialise à "très loin"
-    closest_sphere = NULL;
-    current_sphere = scene.spheres; 
-    while (current_sphere)
+    tmp = scene->spheres;
+    while (tmp)
     {
-        // Vérifie l'intersection avec la sphère courante
-        current_t = intersect_sphere(ray, *current_sphere);
-
-        if (current_t > 0.0 && current_t < scene.spheres->closest_t)
+        t = intersect_sphere(ray, *tmp);
+        if (t > 0.001 && t < hit->t)
         {
-            scene.spheres->closest_t = current_t;
-            closest_sphere = current_sphere;
+            hit->t = t;
+            hit->obj = tmp;
+            hit->type = T_SPHERE;
         }
-        current_sphere = current_sphere->next;
+        tmp = tmp->next;
     }
-    if (closest_sphere)
-       return (ray_sphere2(closest_sphere, ray, scene));
-    // 2. On a rien touché, on retourne la couleur de fond bleue
-    return (0x000000FF); 
 }
-// est utilisé uniquement pour les sphères pour l'instant mais devra etre changé plus tard
+//cherche le petit t de plan et le stock dans hit->t uniquement si il est plus petit
+//que le hit->t precedement calculé pour les autres formes
+void    check_planes(t_scene *scene, t_ray ray, t_hit *hit)
+{
+    t_plane     *tmp;
+    double      t;
+
+    tmp = scene->planes;
+    while (tmp)
+    {
+        t = intersect_plane(ray, *tmp);
+        if (t > 0.001 && t < hit->t)
+        {
+            hit->t = t;
+            hit->obj = tmp;
+            hit->type = T_PLANE;
+        }
+        tmp = tmp->next;
+    }
+}
+//calcule la couleur du pixel d'une sphere grace au p,t,n
+int     render_sphere(t_scene scene, t_ray ray, t_hit hit)
+{
+    t_sphere    *sp;
+    t_vec3      p;
+    t_vec3      n;
+
+    sp = (t_sphere *)hit.obj; // On cast le void* en t_sphere*
+    p = find_p(ray, hit.t);
+    n = vec_normalize(vec_sub(p, sp->center));
+    
+    // Appel à ta fonction de lumière générique
+    return (plane_light(scene, p, n, sp->color));
+}
+//calcule la couleur du pixel d'un plan grace au p,t,n
+int     render_plane(t_scene scene, t_ray ray, t_hit hit)
+{
+    t_plane     *pl;
+    t_vec3      p;
+    t_vec3      n;
+
+    pl = (t_plane *)hit.obj; // On cast le void* en t_plane*
+    p = find_p(ray, hit.t);
+    n = pl->direction;
+    if (vec_dot(ray.direction, n) > 0)
+        n = vec_multi(n, -1.0);
+        
+    // Appel à ta fonction de lumière générique
+    return (plane_light(scene, p, n, pl->color));
+}
+//lance une serie de fonction pour initialiser le plus petit t
+//de chaque ray dans hit->t pour ensuite render hit->type
 int generate_ray(t_scene scene, t_ray ray)
 {
-    if(scene.spheres)
-        return (ray_sphere(ray, scene));
-    else if(scene.planes)
-        ; // À implémenter plus tard
-    else if(scene.cylinders)
-        ; // À implémenter plus tard
-    return (0x000000FF); // Couleur de fond bleue
-  
+    t_hit   hit;
+
+    // 1. Initialisation
+    hit.t = INFINITY;
+    hit.type = 0;
+    hit.obj = NULL;
+
+    // 2. Recherche (Mise à jour de hit)
+    if (scene.spheres)
+        check_spheres(&scene, ray, &hit);
+    if (scene.planes)
+        check_planes(&scene, ray, &hit);
+    // if (scene.cylinders) 
+        //check_cylinders(&scene, ray, &hit);
+
+    if (hit.type == T_SPHERE)
+        return (render_sphere(scene, ray, hit));
+    if (hit.type == T_PLANE)
+        return (render_plane(scene, ray, hit));
+        
+    return (0x000000FF); // fond bleu
 }
