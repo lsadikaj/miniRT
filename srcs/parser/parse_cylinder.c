@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 15:35:53 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/05 16:20:39 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2026/01/19 18:25:40 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	parse_cylinder(char *line, t_scene *scene)
 		return (1);
 	if (parse_vector(line, &i, &temp.direction))
 		return (1);
+	temp.direction = vec_normalize(temp.direction);
 	i = skip_whitespaces(line, i);
 	diameter = ft_atod(&line[i]);
 	while (line[i] && line[i] != ' ' && line[i] != '\t')
