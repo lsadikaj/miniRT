@@ -32,6 +32,9 @@
 # define WIDTH 900
 # define HEIGHT 700
 
+# define T_SPHERE 1
+# define T_PLANE 2
+# define T_CYLINDER 3
 
 //hit point info
 typedef struct s_hit
@@ -39,11 +42,7 @@ typedef struct s_hit
     double      t;
     void        *obj;
     int         type;
-}               t_hit;
-
-#define T_SPHERE 1
-#define T_PLANE 2
-#define T_CYLINDER 3
+}	t_hit;
 
 // Rendering infos
 typedef struct	s_img
@@ -108,12 +107,8 @@ typedef struct	s_sphere
 	t_vec3			center;
 	double			radius;
 	t_color			color;
-	double 			closest_t;
-	t_vec3			p;
-	t_vec3			normal;
 	struct s_sphere	*next;
 }	t_sphere;
-
 
 // Plane infos
 typedef struct	s_plane
@@ -138,15 +133,15 @@ typedef struct s_cylinder
 
 typedef struct s_screen
 {
-	double screen_width;
-	double screen_height;
-	double up;
-	double right;
-	t_vec3    ul_corner;
-	t_vec3    up_vector;
-    t_vec3    right_vector;
-    t_vec3    forward_vector;
-} t_screen;
+	double	screen_width;
+	double	screen_height;
+	double	up;
+	double	right;
+	t_vec3	ul_corner;
+	t_vec3	up_vector;
+    t_vec3	right_vector;
+    t_vec3	forward_vector;
+}	t_screen;
 
 // Complet scene infos
 typedef struct	s_scene
@@ -168,6 +163,18 @@ typedef struct	s_data
 	t_img	img;
 	t_scene	scene;
 }	t_data;
+
+typedef struct s_checker
+{
+	char*	indentifier;
+	int 	(*checker)(char *line);
+}	t_checker;
+
+typedef struct s_parser
+{
+	char*	indentifier;
+	int		(*parser)(char *line, t_scene *scene);
+}	t_parser;
 
 
 // init.c
@@ -208,7 +215,6 @@ double	vec_length(t_vec3 v);
 t_vec3	vec_normalize(t_vec3 v);
 int		is_normalized(char *args);
 
-
 // parse objects
 int		parse_sphere(char *line, t_scene *scene);
 int		parse_plane(char *line, t_scene *scene);
@@ -232,27 +238,14 @@ double	intersect_cylinder(t_ray ray, t_cylinder *cylinder);
 void	check_cylinders(t_scene *scene, t_ray ray, t_hit *hit);
 int		render_cylinder(t_scene scene, t_ray ray, t_hit hit);
 
-int 	plane_light(t_scene scene, t_vec3 hit_point, t_vec3 normal, t_color obj_color);
+int calculate_light(t_scene scene, t_vec3 hit_point, t_vec3 normal, t_color obj_color);
 
 void    check_spheres(t_scene *scene, t_ray ray, t_hit *hit);
 void    check_planes(t_scene *scene, t_ray ray, t_hit *hit);
 int     render_sphere(t_scene scene, t_ray ray, t_hit hit);
 int     render_plane(t_scene scene, t_ray ray, t_hit hit);
 
-typedef struct s_checker
-{
-	char* indentifier;
-	int (*checker)(char *line);
-} t_checker;
-
-typedef struct s_parser
-{
-	char* indentifier;
-	int (*parser)(char *line, t_scene *scene);
-} t_parser;
-
 //calculs utils
-
 double find_big_t(double a, double b, double discriminant);
 double find_small_t(double a, double b, double discriminant);
 double find_discriminant(double a, double b, double c);
@@ -264,8 +257,7 @@ t_vec3 vec_multi(t_vec3 vec, double multiplier);
 t_vec3 vec_sub(t_vec3 start, t_vec3 end);
 t_vec3 vec_add(t_vec3 start, t_vec3 end);
 
-
-
 int	check_color_range(char *str);
 int	is_ambiant(char *line);
+
 #endif

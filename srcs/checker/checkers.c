@@ -1,5 +1,25 @@
 #include "../../includes/minirt.h"
 
+int is_normalised_range(char *args)
+{
+	t_vec3	vec;
+	char	**res;
+
+	res = ft_split(args, ',');
+	vec.x = ft_atod(res[0]);
+	vec.y = ft_atod(res[1]);
+	vec.z = ft_atod(res[2]);
+
+	if(vec.x < -1 || vec.x > 1)
+		return(1);
+	if(vec.y < -1 || vec.y > 1)
+		return(1);
+	if(vec.z < -1 || vec.z > 1)
+		return(1);
+	return(0);
+
+}
+
 int	check_vector(char *token)
 {
 	int	i;
@@ -70,7 +90,7 @@ int	is_valid_camera(char *line)
 		ft_free_split(tokens);
 		return (1);
 	}
-	if (ft_atod(tokens[2]) < -1.0 || ft_atod(tokens[2]) > 1.0)
+	if (is_normalised_range(tokens[2]))
 	{
 		ft_free_split(tokens);
 		return (1);
@@ -153,7 +173,8 @@ int	is_valid_plane(char *line)
 	}
 	if (ft_isdigit_str(tokens[1]) || ft_isdigit_str(tokens[2])
 		|| ft_isdigit_str(tokens[3]) || check_vector(tokens[1])
-		|| check_vector(tokens[2]) || check_color_range(tokens[3]))
+		|| check_vector(tokens[2]) || check_color_range(tokens[3])
+		|| is_normalised_range(tokens[2]))
 	{
 		ft_free_split(tokens);
 		return (1);
@@ -182,7 +203,7 @@ int	is_valid_cylinder(char *line)
 		return (1);
 	}
 	if (check_vector(tokens[1]) || check_vector(tokens[2])
-		|| check_color_range(tokens[5]))
+		|| check_color_range(tokens[5]) || is_normalised_range(tokens[2]))
 	{
 		ft_free_split(tokens);
 		return (1);

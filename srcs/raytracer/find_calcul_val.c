@@ -1,4 +1,4 @@
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 //retourne le point d'intersection le long du rayon a la distance t
 t_vec3 find_p(t_ray ray, double t)

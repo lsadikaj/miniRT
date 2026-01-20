@@ -38,27 +38,27 @@ endif
 CFLAGS      += -I$(INCDIR) $(MLX_FLAGS) -I$(LIBFT_DIR)
 LDFLAGS     = $(MLX_LINK) -L$(LIBFT_DIR) -lft -lm
 SRCS        = $(SRCDIR)/main.c \
-				$(SRCDIR)/init.c \
-				$(SRCDIR)/hooks.c \
-				$(SRCDIR)/render.c \
-				$(SRCDIR)/read_args.c \
-				$(SRCDIR)/utils.c \
-				$(SRCDIR)/vec_utils.c \
-				$(SRCDIR)/generate_ray.c \
-				$(SRCDIR)/find_sphere.c \
-				$(SRCDIR)/ray_cylinder.c \
-				$(SRCDIR)/ray_plane.c \
-				$(SRCDIR)/ray_sphere.c \
-				$(SRCDIR)/intersect_cylinder.c \
-				$(SRCDIR)/parser/checkers.c \
-				$(SRCDIR)/parser/check_args.c \
+				$(SRCDIR)/checker/checkers.c \
+				$(SRCDIR)/checker/check_args.c \
+				$(SRCDIR)/checker/read_args.c \
 				$(SRCDIR)/parser/parse_ambient.c \
 				$(SRCDIR)/parser/parse_sphere.c \
 				$(SRCDIR)/parser/parse_plan.c \
 				$(SRCDIR)/parser/parse_cylinder.c \
 				$(SRCDIR)/parser/parse_all.c \
 				$(SRCDIR)/parser/parser_utils.c \
-				$(SRCDIR)/parser/parse_acl.c
+				$(SRCDIR)/parser/parse_acl.c \
+				$(SRCDIR)/raytracer/render.c \
+				$(SRCDIR)/raytracer/generate_ray.c \
+				$(SRCDIR)/raytracer/find_calcul_val.c \
+				$(SRCDIR)/raytracer/ray_cylinder.c \
+				$(SRCDIR)/raytracer/ray_plane.c \
+				$(SRCDIR)/raytracer/ray_sphere.c \
+				$(SRCDIR)/raytracer/intersect_cylinder.c \
+				$(SRCDIR)/utils/init.c \
+				$(SRCDIR)/utils/hooks.c \
+				$(SRCDIR)/utils/utils.c \
+				$(SRCDIR)/utils/vec_utils.c
 
 
 OBJS        = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))

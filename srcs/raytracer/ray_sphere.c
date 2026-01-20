@@ -40,7 +40,7 @@ int     render_sphere(t_scene scene, t_ray ray, t_hit hit)
     n = vec_normalize(vec_sub(p, sp->center));
     
     // Appel à ta fonction de lumière générique
-    return (plane_light(scene, p, n, sp->color));
+    return (calculate_light(scene, p, n, sp->color));
 }
 
 //cherche le petit t de sphere et le stock dans hit->t uniquement si il est plus petit

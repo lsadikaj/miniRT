@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 void	check_cylinders(t_scene *scene, t_ray ray, t_hit *hit)
 {
@@ -63,5 +63,5 @@ int	render_cylinder(t_scene scene, t_ray ray, t_hit hit)
 	p = find_p(ray, hit.t);
 	height_on_axis = vec_dot(vec_sub(p, cy->center), cy->direction);
 	n = calculate_cylinder_normal(cy, p, height_on_axis);
-	return (plane_light(scene, p, n, cy->color));
+	return (calculate_light(scene, p, n, cy->color));
 }
