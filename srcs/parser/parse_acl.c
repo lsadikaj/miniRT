@@ -50,6 +50,7 @@ int	parse_camera(char *line, t_scene *scene)
 		return (1);
 	if (parse_vector(line, &i, &direction))
 		return (1);
+	direction = vec_normalize(direction);
 	i = skip_whitespaces(line, i);
 	fov = ft_atod(&line[i]);
 	scene->camera.position = position;

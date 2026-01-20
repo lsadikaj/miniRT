@@ -206,7 +206,7 @@ t_color parse_color(char *str);
 t_vec3	vec_cross(t_vec3 a, t_vec3 b);
 double	vec_length(t_vec3 v);
 t_vec3	vec_normalize(t_vec3 v);
-int		is_normalized(t_vec3 v);
+int		is_normalized(char *args);
 
 
 // parse objects
@@ -234,6 +234,10 @@ int		render_cylinder(t_scene scene, t_ray ray, t_hit hit);
 
 int 	plane_light(t_scene scene, t_vec3 hit_point, t_vec3 normal, t_color obj_color);
 
+void    check_spheres(t_scene *scene, t_ray ray, t_hit *hit);
+void    check_planes(t_scene *scene, t_ray ray, t_hit *hit);
+int     render_sphere(t_scene scene, t_ray ray, t_hit hit);
+int     render_plane(t_scene scene, t_ray ray, t_hit hit);
 
 typedef struct s_checker
 {

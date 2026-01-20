@@ -21,6 +21,7 @@ static t_plane *create_plane(t_vec3 point, t_vec3 direction, t_color color)
 	if (!plane)
 		return (NULL);
 	plane->point = point;
+	direction = vec_normalize(direction);
 	plane->direction = direction;
 	plane->color = color;
 	plane->next = NULL;

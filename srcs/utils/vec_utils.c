@@ -51,11 +51,17 @@ t_vec3	vec_normalize(t_vec3 v)
 }
 
 // Pythagore to check if a vector is normalized, return 0 for succes
-int	is_normalized(t_vec3 v)
+int	is_normalized(char *args)
 {
+	t_vec3 v;
+	char **res = ft_split(args,',');
+	v.x = ft_atod(res[0]);
+	v.y = ft_atod(res[1]);
+	v.z = ft_atod(res[2]);
 	double	len;
 
 	len = vec_length(v);
+	ft_free_split(res);
 	if (len < 0.99 || len > 1.01)
 		return (1);
 	return (0);

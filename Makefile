@@ -47,6 +47,8 @@ SRCS        = $(SRCDIR)/main.c \
 				$(SRCDIR)/generate_ray.c \
 				$(SRCDIR)/find_sphere.c \
 				$(SRCDIR)/ray_cylinder.c \
+				$(SRCDIR)/ray_plane.c \
+				$(SRCDIR)/ray_sphere.c \
 				$(SRCDIR)/intersect_cylinder.c \
 				$(SRCDIR)/parser/checkers.c \
 				$(SRCDIR)/parser/check_args.c \
