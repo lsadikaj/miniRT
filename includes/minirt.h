@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:17:48 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/17 17:43:31 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2026/01/19 17:41:08 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,6 @@ typedef struct s_cylinder
 	double				radius;
 	double				height;
 	t_color				color;
-	double				closest_t;
-	t_vec3				p;
-	t_vec3				normal;
 	struct s_cylinder	*next;
 }	t_cylinder;
 
@@ -230,9 +227,12 @@ int		parse_all(char *filename, t_data *data);
 int 	generate_ray(t_scene scene, t_ray ray);
 void    my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
-int		ray_cylinder(t_ray ray, t_scene scene);
-double	intersect_cylinder(t_ray ray, t_cylinder *cylinder);
 
+double	intersect_cylinder(t_ray ray, t_cylinder *cylinder);
+void	check_cylinders(t_scene *scene, t_ray ray, t_hit *hit);
+int		render_cylinder(t_scene scene, t_ray ray, t_hit hit);
+
+int 	plane_light(t_scene scene, t_vec3 hit_point, t_vec3 normal, t_color obj_color);
 
 
 typedef struct s_checker

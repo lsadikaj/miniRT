@@ -6,7 +6,7 @@
 /*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 18:32:53 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/17 17:43:01 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2026/01/19 17:22:02 by lsadikaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static double	check_cylinder_height(t_ray ray, t_cylinder *cylinder, double t)
 					cylinder->direction);
 	if (height_on_axis < 0.0 || height_on_axis > cylinder->height)
 		return (-1.0);
-	cylinder->p = p;
 	return (t);
 }
 
@@ -93,14 +92,14 @@ double	intersect_cylinder(t_ray ray, t_cylinder *cylinder)
 	top_center = vec_add(cylinder->center,
 			vec_multi(cylinder->direction, cylinder->height));
 	t_cap2 = intersect_cylinder_cap(ray, cylinder, top_center);
-	closest_t = t_body;
-	if (t_cap1 > 0.0 && (t_body < 0.0 || t_cap1 < closest_t))
+	closest_t = INFINITY;
+	if (t_body > 0.0 && t_body < closest_t)
+		closest_t = t_body;
+	if (t_cap1 > 0.0 && t_cap1 < closest_t)
 		closest_t = t_cap1;
-	if (t_cap2 > 0.0 && (closest_t < 0.0 || t_cap2 < closest_t))
+	if (t_cap2 > 0.0 && t_cap2 < closest_t)
 		closest_t = t_cap2;
-	if (closest_t < 0.0)
+	if (closest_t == INFINITY)
 		return (-1.0);
-	if (closest_t != t_body)
-		cylinder->p = find_p(ray, closest_t);
 	return (closest_t);
 }
