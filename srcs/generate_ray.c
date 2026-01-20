@@ -117,6 +117,27 @@ void    check_planes(t_scene *scene, t_ray ray, t_hit *hit)
         tmp = tmp->next;
     }
 }
+void    check_cylinders(t_scene *scene, t_ray ray, t_hit *hit)
+{
+	double		current_t;
+	t_cylinder	*current_cyl;
+
+	scene->cylinders->closest_t = INFINITY;
+	current_cyl = scene->cylinders;
+	while (current_cyl)
+	{
+		current_t = intersect_cylinder(ray, current_cyl);
+		if (current_t > 0.0 && current_t < hit->t)
+		{
+			scene->cylinders->closest_t = current_t;
+			hit->t = current_t;
+			hit->obj = current_cyl;
+			hit->type = T_CYLINDER;
+
+		}
+		current_cyl = current_cyl->next;
+	}
+}
 //calcule la couleur du pixel d'une sphere grace au p,t,n
 int     render_sphere(t_scene scene, t_ray ray, t_hit hit)
 {
@@ -179,13 +200,16 @@ int generate_ray(t_scene scene, t_ray ray)
         check_spheres(&scene, ray, &hit);
     if (scene.planes)
         check_planes(&scene, ray, &hit);
-    // if (scene.cylinders) 
-        //check_cylinders(&scene, ray, &hit);
-
+    if (scene.cylinders)
+        check_cylinders(&scene, ray, &hit);
+    
+   
     if (hit.type == T_SPHERE)
         return (render_sphere(scene, ray, hit));
     if (hit.type == T_PLANE)
         return (render_plane(scene, ray, hit));
+    if (hit.type == T_CYLINDER) 
+        return(test_cylinders(scene, ray, &hit.t));
         
     return (0x000000FF); // fond bleu
 }
