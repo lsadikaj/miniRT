@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_cylinder.c                                   :+:      :+:    :+:   */
+/*   parse_all.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 15:35:53 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/05 16:20:39 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2026/01/21 23:04:08 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	init_parser(t_parser *checkers)
 	checkers[5] = (t_parser){"cy", &parse_cylinder};
 	checkers[6] = (t_parser){0, NULL};
 }
-int exec_parser(t_parser *parcers, int j, char *args, t_scene *scene)
+
+int	exec_parser(t_parser *parcers, int j, char *args, t_scene *scene)
 {
 	if (parcers[j].parser(args, scene) == 1)
 	{
@@ -45,7 +46,7 @@ int	parse_loop(char *args, t_scene *scene)
 		if (ft_strncmp(args, parcers[j].indentifier,
 				ft_strlen(parcers[j].indentifier)) == 0)
 		{
-			if(exec_parser(parcers, j, args, scene) == 1)
+			if (exec_parser(parcers, j, args, scene) == 1)
 				return (1);
 			break ;
 		}
@@ -53,36 +54,27 @@ int	parse_loop(char *args, t_scene *scene)
 	}
 	return (0);
 }
-void free_line(char *line, int *i)
-{
-	free(line);
-	*i = 0;
-}
-int parse_args(int fd, t_data *data, int i)
+
+int	parse_args(int fd, t_data *data, int i)
 {
 	char	*line;
 
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		if (line[i] == '\0' || line[i] == '\n')
+		if (line[i] != '\0' && line[i] != '\n')
 		{
-			free_line(line, &i);
-			continue ;
+			if (parse_loop(line + i, &data->scene) == 1)
+			{
+				free(line);
+				close(fd);
+				return (1);
+			}
 		}
-		if (line[i] == '\0' || line[i] == '\n')
-		{
-			free_line(line, &i);
-			continue ;
-		}
-		if (parse_loop(line + i, &data->scene) == 1)
-        {
-            free(line);
-            close(fd);
-            return (1);
-        }
 		free(line);
+		line = get_next_line(fd);
 		i = 0;
 	}
 	return (0);
@@ -97,7 +89,7 @@ int	parse_all(char *filename, t_data *data)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (1);
-	if(parse_args(fd, data, i) == 1)
+	if (parse_args(fd, data, i) == 1)
 	{
 		close(fd);
 		return (1);

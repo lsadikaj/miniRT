@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:32:25 by lsadikaj          #+#    #+#             */
-/*   Updated: 2024/12/20 15:45:33 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:34:17 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ static void	fill_split(char **s_split, const char *s, char c)
 	}
 	s_split[j] = NULL;
 }
+
 //attention le dernier token garde le \n si present dans le fichier d'origine
 char	**ft_split(char const *s, char c)
 {
@@ -107,18 +108,6 @@ char	**ft_split(char const *s, char c)
 	return (s_split);
 }
 
-void ft_free_split(char **split)
-{
-	int i = 0;
-	if (!split)
-		return;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
-}
 /*
 #include <stdio.h>
 

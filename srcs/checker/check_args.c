@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_args.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 17:02:51 by jiparcer          #+#    #+#             */
+/*   Updated: 2026/01/21 22:55:37 by jiarcer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minirt.h"
 
 // a ameliorer avec un switch case peut etre
@@ -11,7 +23,8 @@ void	init_checkers(t_checker *checkers)
 	checkers[5] = (t_checker){"cy", &is_valid_cylinder};
 	checkers[6] = (t_checker){0, NULL};
 }
-int not_found(char *args)
+
+int	not_found(char *args)
 {
 	if (args[0] != '\n' || args[0] != '\0')
 	{
@@ -21,7 +34,7 @@ int not_found(char *args)
 	return (0);
 }
 
-int exec_checker(t_checker *checkers, int j, char *args)
+int	exec_checker(t_checker *checkers, int j, char *args)
 {
 	if (checkers[j].checker(args) == 1)
 	{
@@ -46,7 +59,7 @@ int	check_args(char *args)
 		if (ft_strncmp(args, checkers[j].indentifier,
 				ft_strlen(checkers[j].indentifier)) == 0)
 		{
-			if(exec_checker(checkers, j, args) == 1)
+			if (exec_checker(checkers, j, args) == 1)
 				return (1);
 			found = 1;
 			break ;
@@ -55,7 +68,7 @@ int	check_args(char *args)
 	}
 	if (!found)
 	{
-		if(not_found(args) == 1)
+		if (not_found(args) == 1)
 			return (1);
 	}
 	return (0);

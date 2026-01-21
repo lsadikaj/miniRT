@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_cylinder.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 18:32:53 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/19 17:22:02 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2026/01/21 18:00:43 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static double	check_cylinder_height(t_ray ray, t_cylinder *cylinder, double t)
 
 	p = find_p(ray, t);
 	height_on_axis = vec_dot(vec_sub(p, cylinder->center),
-					cylinder->direction);
+			cylinder->direction);
 	if (height_on_axis < 0.0 || height_on_axis > cylinder->height)
 		return (-1.0);
 	return (t);
@@ -37,11 +37,11 @@ static double	intersect_cylinder_body(t_ray ray, t_cylinder *cylinder)
 	dot_values[0] = vec_dot(oc, cylinder->direction);
 	dot_values[1] = vec_dot(ray.direction, cylinder->direction);
 	abc[0] = vec_dot(ray.direction, ray.direction)
-			- (dot_values[1] * dot_values[1]);
+		- (dot_values[1] * dot_values[1]);
 	abc[1] = 2 * (vec_dot(oc, ray.direction)
 			- (dot_values[0] * dot_values[1]));
 	abc[2] = vec_dot(oc, oc) - (dot_values[0] * dot_values[0])
-			- (cylinder->radius * cylinder->radius);
+		- (cylinder->radius * cylinder->radius);
 	discriminant = abc[1] * abc[1] - 4.0 * abc[0] * abc[2];
 	if (discriminant < 0)
 		return (-1.0);
@@ -86,7 +86,6 @@ double	intersect_cylinder(t_ray ray, t_cylinder *cylinder)
 	t_cap1 = -1;
 	t_cap2 = -1;
 	closest_t = INFINITY;
-	
 	t_body = intersect_cylinder_body(ray, cylinder);
 	t_cap1 = intersect_cylinder_cap(ray, cylinder, cylinder->center);
 	top_center = vec_add(cylinder->center,

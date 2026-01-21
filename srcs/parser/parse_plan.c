@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parse_plan.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 14:58:16 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/05 15:31:11 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:59:44 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
 // create a node in link list t_plane with malloc
-static t_plane *create_plane(t_vec3 point, t_vec3 direction, t_color color)
+static t_plane	*create_plane(t_vec3 point, t_vec3 direction, t_color color)
 {
 	t_plane	*plane;
-	
+
 	plane = malloc(sizeof(t_plane));
 	if (!plane)
 		return (NULL);
@@ -29,26 +29,22 @@ static t_plane *create_plane(t_vec3 point, t_vec3 direction, t_color color)
 }
 
 // add node in back of link list t_planes
-static void add_plane_to_list(t_scene *scene, t_plane *new_plane)
+static void	add_plane_to_list(t_scene *scene, t_plane *new_plane)
 {
-    t_plane *current;
+	t_plane	*current;
 
-    // Sécurité 1 : Vérifier les inputs
-    if (!scene || !new_plane)
-        return ;
-
-    // Sécurité 2 : Toujours s'assurer que le nouveau dernier maillon pointe vers rien
-    new_plane->next = NULL; 
-
-    if (!scene->planes)
-    {
-        scene->planes = new_plane;
-        return ;
-    }
-    current = scene->planes;
-    while (current->next)
-        current = current->next;
-    current->next = new_plane;
+	if (!scene || !new_plane)
+		return ;
+	new_plane->next = NULL;
+	if (!scene->planes)
+	{
+		scene->planes = new_plane;
+		return ;
+	}
+	current = scene->planes;
+	while (current->next)
+		current = current->next;
+	current->next = new_plane;
 }
 
 // extract plane data and fill scenes->planes

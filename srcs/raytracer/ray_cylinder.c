@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cylinder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:25:41 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/19 17:35:29 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2026/01/21 18:03:42 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_vec3	calculate_cylinder_normal(t_cylinder *cy, t_vec3 p,
 	else
 	{
 		axis_point = vec_add(cy->center,
-						vec_multi(cy->direction, height_on_axis));
+				vec_multi(cy->direction, height_on_axis));
 		normal = vec_normalize(vec_sub(p, axis_point));
 	}
 	return (normal);

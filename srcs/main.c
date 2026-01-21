@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:19:21 by lsadikaj          #+#    #+#             */
-/*   Updated: 2025/12/17 18:02:25 by marvin           ###   ########.fr       */
+/*   Updated: 2026/01/21 17:48:49 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
-
 
 int	file_check(char *filename)
 {
@@ -29,7 +28,7 @@ int	file_check(char *filename)
 	return (0);
 }
 
-int check_usage(int argc, char **argv)
+int	check_usage(int argc, char **argv)
 {
 	if (argc != 2)
 	{
@@ -49,8 +48,8 @@ int check_usage(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	
-	if(check_usage(argc, argv))
+
+	if (check_usage(argc, argv))
 		return (1);
 	ft_bzero(&data, sizeof(t_data));
 	parse_all(argv[1], &data);

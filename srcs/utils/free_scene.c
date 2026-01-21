@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   free_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 15:35:43 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/21 17:36:06 by jiarcer          ###   ########.fr       */
+/*   Created: 2026/01/21 23:40:45 by jiarcer           #+#    #+#             */
+/*   Updated: 2026/01/21 23:51:42 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/minirt.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+void free_scene(t_scene *scene)
 {
-	if (!lst || !f)
-		return ;
-	while (lst)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
+    
 }

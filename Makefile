@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+         #
+#    By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 22:07:35 by lsadikaj          #+#    #+#              #
-#    Updated: 2026/01/17 16:56:33 by lsadikaj         ###   ########.fr        #
+#    Updated: 2026/01/21 22:57:09 by jiarcer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ CFLAGS      += -I$(INCDIR) $(MLX_FLAGS) -I$(LIBFT_DIR)
 LDFLAGS     = $(MLX_LINK) -L$(LIBFT_DIR) -lft -lm
 SRCS        = $(SRCDIR)/main.c \
 				$(SRCDIR)/checker/checkers.c \
+				$(SRCDIR)/checker/checkers2.c \
+				$(SRCDIR)/checker/check_aclnb.c \
 				$(SRCDIR)/checker/check_args.c \
 				$(SRCDIR)/checker/read_args.c \
 				$(SRCDIR)/parser/parse_ambient.c \

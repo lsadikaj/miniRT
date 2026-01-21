@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsadikaj <lsadikaj@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 15:35:53 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/19 18:25:40 by lsadikaj         ###   ########.fr       */
+/*   Updated: 2026/01/21 23:08:59 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
 // create a node in linked list t_cylinder with malloc
-static t_cylinder *create_cylinder(t_cylinder *temp)
+static t_cylinder	*create_cylinder(t_cylinder *temp)
 {
 	t_cylinder	*cylinder;
 
@@ -56,22 +56,10 @@ static int	create_and_add_cylinder(t_scene *scene, t_cylinder *temp)
 	return (0);
 }
 
-// parse cylinder line and fill linked list t_scene->cylinders
-int	parse_cylinder(char *line, t_scene *scene)
+int	parse_cylinder2(char *line, int i, t_cylinder temp, t_scene *scene)
 {
-	int			i;
-	t_cylinder	temp;
-	double		diameter;
+	double	diameter;
 
-	i = 0;
-	while (line[i] && line[i] != ' ' && line[i] != '\t')
-		i++;
-	if (parse_vector(line, &i, &temp.center))
-		return (1);
-	if (parse_vector(line, &i, &temp.direction))
-		return (1);
-	temp.direction = vec_normalize(temp.direction);
-	i = skip_whitespaces(line, i);
 	diameter = ft_atod(&line[i]);
 	while (line[i] && line[i] != ' ' && line[i] != '\t')
 		i++;
@@ -85,4 +73,22 @@ int	parse_cylinder(char *line, t_scene *scene)
 		return (1);
 	temp.radius = diameter / 2.0;
 	return (create_and_add_cylinder(scene, &temp));
+}
+
+// parse cylinder line and fill linked list t_scene->cylinders
+int	parse_cylinder(char *line, t_scene *scene)
+{
+	int			i;
+	t_cylinder	temp;
+
+	i = 0;
+	while (line[i] && line[i] != ' ' && line[i] != '\t')
+		i++;
+	if (parse_vector(line, &i, &temp.center))
+		return (1);
+	if (parse_vector(line, &i, &temp.direction))
+		return (1);
+	temp.direction = vec_normalize(temp.direction);
+	i = skip_whitespaces(line, i);
+	return (parse_cylinder2(line, i, temp, scene));
 }
