@@ -1,25 +1,5 @@
 #include "../includes/minirt.h"
 
-//calcul la couleur d'un pixel en int,
-//en prenant en compte de l'intensité de la lumière
-int plane_light(t_scene scene, t_vec3 hit_point, t_vec3 normal, t_color obj_color)
-{
-    t_vec3 light_dir;
-    double angle;
-    double intensity;
-
-    light_dir = vec_sub(scene.light.position, hit_point);
-    light_dir = vec_normalize(light_dir);
-    angle = vec_dot(normal, light_dir);
-    if(angle < 0)
-        angle = 0;
-    intensity = scene.light.brightness * angle;
-
-    if(intensity > 1.0)
-        intensity = 1.0;
-    return(create_color(obj_color.r * intensity, obj_color.g * intensity, obj_color.b * intensity));
-}
-
 // t = (plane.point - ray.origin) . plane.normal / (ray.direction . plane.normal)
 double intersect_plane(t_ray ray, t_plane planes)
 {
@@ -37,7 +17,6 @@ double intersect_plane(t_ray ray, t_plane planes)
 
     return (t);
 }
-
 
 //cherche le petit t de plan et le stock dans hit->t uniquement si il est plus petit
 //que le hit->t precedement calculé pour les autres formes
@@ -74,5 +53,5 @@ int     render_plane(t_scene scene, t_ray ray, t_hit hit)
         n = vec_multi(n, -1.0);
         
     // Appel à ta fonction de lumière générique
-    return (plane_light(scene, p, n, pl->color));
+    return (calculate_light(scene, p, n, pl->color));
 }
