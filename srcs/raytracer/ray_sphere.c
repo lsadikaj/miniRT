@@ -6,11 +6,11 @@
 /*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:22:21 by jiarcer           #+#    #+#             */
-/*   Updated: 2026/01/21 22:11:41 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 13:00:59 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 //calcul le discriminant et si il y a une intersection 
 //calcule et retourne le petit t de la sphere

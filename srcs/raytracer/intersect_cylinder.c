@@ -6,11 +6,11 @@
 /*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 18:32:53 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/21 18:00:43 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 13:01:10 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 static double	check_cylinder_height(t_ray ray, t_cylinder *cylinder, double t)
 {

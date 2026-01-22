@@ -6,11 +6,11 @@
 /*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:06:53 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/21 22:22:55 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 13:00:52 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 void	put_pixel(t_img *img, int x, int y, int color)
 {

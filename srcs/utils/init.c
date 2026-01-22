@@ -6,11 +6,11 @@
 /*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 14:52:33 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/21 22:08:16 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 13:01:21 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 int	init_mlx(t_data *data)
 {

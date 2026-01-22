@@ -6,11 +6,11 @@
 /*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:09:45 by jiarcer           #+#    #+#             */
-/*   Updated: 2026/01/21 22:54:21 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 13:00:41 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 static int	process_line_check(char *line)
 {

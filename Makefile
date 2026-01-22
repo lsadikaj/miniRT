@@ -6,7 +6,7 @@
 #    By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 22:07:35 by lsadikaj          #+#    #+#              #
-#    Updated: 2026/01/21 22:57:09 by jiarcer          ###   ########.fr        #
+#    Updated: 2026/01/22 13:04:47 by jiarcer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRCS        = $(SRCDIR)/main.c \
 				$(SRCDIR)/raytracer/intersect_cylinder.c \
 				$(SRCDIR)/utils/init.c \
 				$(SRCDIR)/utils/hooks.c \
+				$(SRCDIR)/utils/clean.c \
 				$(SRCDIR)/utils/utils.c \
 				$(SRCDIR)/utils/vec_utils.c
 

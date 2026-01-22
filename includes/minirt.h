@@ -6,7 +6,7 @@
 /*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:17:48 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/21 22:56:38 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 12:51:32 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,5 +274,6 @@ t_vec3	vec_add(t_vec3 start, t_vec3 end);
 
 int		check_color_range(char *str);
 int		is_ambiant(char *line);
+void	free_data(t_data *data);
 
 #endif

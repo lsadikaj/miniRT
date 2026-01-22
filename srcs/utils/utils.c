@@ -6,11 +6,11 @@
 /*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 21:58:12 by jiarcer           #+#    #+#             */
-/*   Updated: 2026/01/21 22:03:48 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 13:01:51 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 t_vec3	vec_add(t_vec3 start, t_vec3 end)
 {

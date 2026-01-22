@@ -6,11 +6,11 @@
 /*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 14:33:47 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/21 22:03:40 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 13:01:59 by jiarcer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 // Calculate the vectorial product of 2 vectors
 // return a vector perpendicular of the 2 given in parameter
