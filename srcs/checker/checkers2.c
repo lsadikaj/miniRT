@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkers2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 22:25:29 by jiarcer           #+#    #+#             */
-/*   Updated: 2026/01/21 22:27:14 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 17:06:18 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	is_valid_sphere(char *line)
 	char	**tokens;
 
 	tokens = ft_split(line, ' ');
-	if (tokens[0][0] != 's' || tokens[0][1] != 'p' || tokens[0][2] != '\0')
+	if (tokens[0][0] != 's' || tokens[0][1] != 'p' || tokens[0][2] != '\0'
+		|| (tokens[4] != NULL && tokens[4][1] != '\0'))
 	{
 		ft_free_split(tokens);
 		return (1);
@@ -46,7 +47,8 @@ int	is_valid_plane(char *line)
 	char	**tokens;
 
 	tokens = ft_split(line, ' ');
-	if (tokens[0][0] != 'p' || tokens[0][1] != 'l' || tokens[0][2] != '\0')
+	if (tokens[0][0] != 'p' || tokens[0][1] != 'l' || tokens[0][2] != '\0'
+		|| (tokens[4] != NULL && tokens[4][1] != '\0'))
 	{
 		ft_free_split(tokens);
 		return (1);
@@ -70,7 +72,8 @@ int	is_valid_cylinder(char *line)
 	char	**tokens;
 
 	tokens = ft_split(line, ' ');
-	if (tokens[0][0] != 'c' || tokens[0][1] != 'y' || tokens[0][2] != '\0')
+	if (tokens[0][0] != 'c' || tokens[0][1] != 'y' || tokens[0][2] != '\0'
+		|| (tokens[6] != NULL && tokens[6][1] != '\0'))
 	{
 		ft_free_split(tokens);
 		return (1);

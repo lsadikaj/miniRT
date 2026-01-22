@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_ray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:06:53 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/21 23:55:56 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 16:22:44 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	generate_ray(t_scene scene, t_ray ray)
 		return (render_plane(scene, ray, hit));
 	if (hit.type == T_CYLINDER)
 		return (render_cylinder(scene, ray, hit));
-	return (0x000000FF);
+	return (0);
 }
 
 static int	is_in_shadow(t_scene scene, t_vec3 point, t_vec3 light_pos)

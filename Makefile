@@ -6,7 +6,7 @@
 #    By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 22:07:35 by lsadikaj          #+#    #+#              #
-#    Updated: 2026/01/22 16:00:13 by jiparcer         ###   ########.fr        #
+#    Updated: 2026/01/22 16:09:07 by jiparcer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,7 @@ fclean: clean
 	rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean || true
 	make clean -C $(MLX_DIR) || true
+	rm -f libmlx.a
 
 
 re: fclean all

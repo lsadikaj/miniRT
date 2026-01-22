@@ -6,7 +6,7 @@
 /*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:08:39 by jiarcer           #+#    #+#             */
-/*   Updated: 2026/01/22 14:39:08 by jiparcer         ###   ########.fr       */
+/*   Updated: 2026/01/22 17:04:33 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	is_valid_ambiant(char *line)
 
 	tokens = ft_split(line, ' ');
 	if (!tokens || tokens[0] == NULL || tokens[1] == NULL || tokens[2] == NULL
-		|| tokens[0][0] != 'A' || tokens[0][1] != '\0' || tokens[3] != NULL)
+		|| tokens[0][0] != 'A' || tokens[0][1] != '\0' || (tokens[3] != NULL
+		&& tokens[3][1] != '\0'))
 	{
 		ft_free_split(tokens);
 		return (1);
@@ -84,7 +85,7 @@ int	is_valid_camera(char *line)
 	tokens = ft_split(line, ' ');
 	if (!tokens || tokens[0] == NULL || tokens[1] == NULL || tokens[2] == NULL
 		|| tokens[3] == NULL || tokens[0][0] != 'C' || tokens[0][1] != '\0'
-		|| tokens[4] != NULL)
+		|| (tokens[4] != NULL && tokens[4][1] != '\0'))
 	{
 		ft_free_split(tokens);
 		return (1);
@@ -113,7 +114,7 @@ int	is_valid_light(char *line)
 	tokens = ft_split(line, ' ');
 	if (!tokens || tokens[0] == NULL || tokens[1] == NULL || tokens[2] == NULL
 		|| tokens[3] == NULL || tokens[0][0] != 'L' || tokens[0][1] != '\0'
-		|| tokens[4] != NULL)
+		|| (tokens[4] != NULL && tokens[4][1] != '\0'))
 	{
 		ft_free_split(tokens);
 		return (1);
