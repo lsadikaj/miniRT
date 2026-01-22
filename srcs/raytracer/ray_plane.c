@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:17:05 by jiarcer           #+#    #+#             */
-/*   Updated: 2026/01/21 23:57:35 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 15:43:37 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ double	intersect_plane(t_ray ray, t_plane planes)
 
 	plane_normal = vec_normalize(planes.direction);
 	denominator = vec_dot(ray.direction, plane_normal);
-	if (denominator > -0.0001 && denominator < 0.0001) // fabs ???
+	if (denominator > -0.0001 && denominator < 0.0001)
 		return (-1);
 	t = vec_dot(vec_sub(planes.point, ray.origin), plane_normal) / denominator;
 	if (t < 0)

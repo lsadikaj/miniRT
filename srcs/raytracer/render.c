@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:06:53 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/22 13:00:52 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 15:45:26 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,28 +52,22 @@ void	draw_gradient(t_data *data)
 void	render(t_scene scene, t_screen screen, t_data *data)
 {
 	t_render	s;
-	// Calcul de la taille d'un pixel sur ton écran virtuel
-	s.u_scale = screen.screen_width / (double)WIDTH; // Taille d'un pixel en largeur dans le monde 3D
-	s.v_scale = screen.screen_height / (double)HEIGHT;  // Taille d'un pixel en largeur dans le monde 3D
+
+	s.u_scale = screen.screen_width / (double)WIDTH;
+	s.v_scale = screen.screen_height / (double)HEIGHT;
 	s.y = 0;
 	while (s.y < HEIGHT)
 	{
 		s.x = 0;
 		while (s.x < WIDTH)
 		{
-			// 1. Calculer la position du point sur l'écran virtuel pour le pixel (x, y)
-			// On part du coin haut-gauche
-			// On se décale à droite (x * Right * u_scale)
-			// On se décale en bas (y * Up * v_scale) -> Attention au signe selon ton Up vector !
 			s.pixel_pos = screen.ul_corner;
-			// Décalage horizontal
-			s.pixel_pos = vec_add(s.pixel_pos, vec_multi(screen.right_vector, s.x * s.u_scale));
-			// Décalage vertical (on descend, donc on soustrait le vecteur UP)
-			s.pixel_pos = vec_sub(s.pixel_pos, vec_multi(screen.up_vector, s.y * s.v_scale));
-			// 2. Définir le rayon
+			s.pixel_pos = vec_add(s.pixel_pos,
+					vec_multi(screen.right_vector, s.x * s.u_scale));
+			s.pixel_pos = vec_sub(s.pixel_pos,
+					vec_multi(screen.up_vector, s.y * s.v_scale));
 			s.ray.origin = scene.camera.position;
-			s.ray.direction = vec_direction(scene.camera.position, s.pixel_pos); // Normalisé ici
-			// 3. Lancer le rayon dans la scène (Intersection)
+			s.ray.direction = vec_direction(scene.camera.position, s.pixel_pos);
 			s.color = generate_ray(scene, s.ray);
 			put_pixel(&data->img, s.x, s.y, s.color);
 			s.x++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:08:39 by jiarcer           #+#    #+#             */
-/*   Updated: 2026/01/21 22:26:59 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 14:39:08 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	is_normalised_range(char *args)
 	vec.x = ft_atod(res[0]);
 	vec.y = ft_atod(res[1]);
 	vec.z = ft_atod(res[2]);
+	ft_free_split(res);
 	if (vec.x < -1 || vec.x > 1)
 		return (1);
 	if (vec.y < -1 || vec.y > 1)

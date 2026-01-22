@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+         #
+#    By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 22:07:35 by lsadikaj          #+#    #+#              #
-#    Updated: 2026/01/22 13:04:47 by jiarcer          ###   ########.fr        #
+#    Updated: 2026/01/22 16:00:13 by jiparcer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ $(LIBFT_LIB):
 
 $(MLX_LIB):
 	make -C $(MLX_DIR)
-	cp minilibx_mms_20200219/libmlx.dylib .
+	cp minilibx-linux/libmlx.a .
 
 $(NAME): $(OBJS)
 	$(CC) $(OBJS) $(LDFLAGS) -o $@
@@ -89,6 +89,8 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean || true
+	make clean -C $(MLX_DIR) || true
+
 
 re: fclean all
 

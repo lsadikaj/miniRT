@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:17:48 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/22 12:51:32 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 15:48:39 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define T_SPHERE 1
 # define T_PLANE 2
 # define T_CYLINDER 3
+
+# define PI 3.141592655358979323846264338327950288
 
 //hit point info
 typedef struct s_hit
@@ -241,7 +243,6 @@ int		is_valid_cylinder(char *line);
 int		check_vector(char *token);
 int		is_normalised_range(char *args);
 int		check_aclnb(int fd);
-
 
 void	render(t_scene scene, t_screen screen, t_data *data);
 int		parse_all(char *filename, t_data *data);

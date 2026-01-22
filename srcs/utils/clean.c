@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 23:40:45 by jiarcer           #+#    #+#             */
-/*   Updated: 2026/01/22 13:01:44 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 15:46:23 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,15 @@ static void	free_mlx(t_data *data)
 	if (!data->mlx_ptr)
 		return ;
 	if (data->img.img_ptr)
+	{
 		mlx_destroy_image(data->mlx_ptr, data->img.img_ptr);
+		data->img.img_ptr = NULL;
+	}
 	if (data->win_ptr)
+	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		data->win_ptr = NULL;
+	}
 }
 
 void	free_data(t_data *data)

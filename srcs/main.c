@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:19:21 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/22 12:55:14 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 14:57:42 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,5 @@ int	main(int argc, char **argv)
 		data.img.img_ptr, 0, 0);
 	setup_hooks(&data);
 	mlx_loop(data.mlx_ptr);
-	free_data(&data);
 	return (0);
 }

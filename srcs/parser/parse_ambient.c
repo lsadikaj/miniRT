@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimpa <jimpa@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:03:38 by jiparcer          #+#    #+#             */
-/*   Updated: 2026/01/21 17:03:42 by jimpa            ###   ########.fr       */
+/*   Updated: 2026/01/22 15:43:04 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_color_range(char *str)
 		return (1);
 	components = ft_split(str, ',');
 	if (!components || components[3] != NULL || components[2] == NULL
-		|| components[2][0] == '\n') //free split ???
+		|| components[2][0] == '\n')
 		return (1);
 	while (components[i])
 	{

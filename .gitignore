@@ -3,7 +3,6 @@
 ._*
 
 # MiniLibX (chacun installe la sienne localement)
-minilibx-linux/
 minilibx_mms_20200219/
 mlx/
 *.dylib

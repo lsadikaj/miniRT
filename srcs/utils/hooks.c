@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiarcer <jiarcer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiparcer <jiparcer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:00:42 by lsadikaj          #+#    #+#             */
-/*   Updated: 2026/01/22 13:01:35 by jiarcer          ###   ########.fr       */
+/*   Updated: 2026/01/22 14:51:08 by jiparcer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	close_window(t_data *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	free_data(data);
 	exit(0);
 	return (0);
 }
